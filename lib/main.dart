@@ -1,6 +1,7 @@
 
 
 import 'package:app1/ad.dart';
+import 'package:app1/page/api.dart';
 import 'package:app1/page/login.dart';
 import 'package:flutter/material.dart';
 
@@ -9,7 +10,7 @@ void main(){
   runApp(MaterialApp(
 debugShowCheckedModeBanner:false,
 title: "logian",
-home: loginpage(),
+home:loginpage(),
 theme: ThemeData(
   primaryColor: Colors.red),
   
@@ -77,7 +78,12 @@ class _myappState extends State<myapp> {
                       ),
         
                     ),
-                    ElevatedButton(onPressed: (){}, 
+                    ElevatedButton(onPressed: (){
+
+                      Navigator.push(
+                            context,MaterialPageRoute(builder: (context)=> api()),
+                          );
+                    }, 
                     child: Text("Submit") ),
                     
                   ],

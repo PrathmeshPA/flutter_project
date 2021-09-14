@@ -12,7 +12,14 @@ class _loginpageState extends State<loginpage> {
   final userName=TextEditingController();
   final password=TextEditingController();
 
-  final _from=GlobalKey(); 
+  GlobalKey<FormState> fromk=GlobalKey<FormState>(); 
+
+  void validate(){
+    var currentState = fromk.currentState;
+    if(currentState!.validate()){
+      
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +35,7 @@ class _loginpageState extends State<loginpage> {
                 child: Card(
                   
                   child: Form(
-                    key: _from ,
+                    key: fromk ,
                     child: Column(
                       children: [
                         
@@ -45,12 +52,14 @@ class _loginpageState extends State<loginpage> {
                                   decoration: InputDecoration(
                                     hintText: "User Name",labelText: "Enter username"
                                   ),
-                                  // validator: (value){
-                                  //   if (value.isEmpty){
-                                  //   return "gfhj" ;
-                                  //   }
-                                  //   return null;
-                                  // },
+                                  validator: (value){
+                                    if(value! . isEmpty){
+                                      return "required";
+                                    }else{
+                                      return null  ;
+                                  }                                                                                                
+                                    
+                                  },
                                 ),
                                 SizedBox(height: 20,),
                                 TextFormField(
@@ -66,6 +75,7 @@ class _loginpageState extends State<loginpage> {
                         ),
                         // ignore: deprecated_member_use
                         RaisedButton(onPressed: (){
+                          validate();
                           Navigator.push(
                             context,MaterialPageRoute(builder: (context)=> myapp()),
                           );
